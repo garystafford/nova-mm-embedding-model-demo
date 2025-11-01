@@ -2,7 +2,7 @@
 
 Demonstrating the use of Amazon Nova Multimodal Embeddings and TwelveLabs Pegasus 1.2 models on Amazon Bedrock along with Amazon OpenSearch Serverless to perform semantic search.
 
-![Architecture](./previews/twelve_labs_on_bedrock_v3.png)
+![Architecture](./previews/twelve_labs_bedrock_nova_mm.png)
 
 ## Usage Instructions
 
@@ -147,17 +147,13 @@ Preview of search results with keyframe previews
 
 ![Result Grid](./previews/grid.png)
 
-Plotly 3D scatter plot of search results
+“Elbow” method to help select the optimal number of clusters
 
-![Search Results](./previews/3d_search_results.png)
+![Search Results](./previews/kmeans.png)
 
-All video segments plotted using PCA and k-means clustering
+All video segments plotted using t-SNE and K-Means clustering
 
-![PCA 2D Plot](./previews/pca_kmeans.png)
-
-All video segments plotted using t-SNE and k-means clustering
-
-![t-SNE 2D Plot](./previews/ksne_kmeans.png)
+![t-SNE 2D Plot](./previews/tsne_kmeans.png)
 
 ---
 
