@@ -1,8 +1,8 @@
-# Summary: This script generates video embeddings using the Amazon Bedrock Marengo model.
+# Summary: This script generates video embeddings using the Amazon Nova ultimodal Embeddings model.
 #          It retrieves video files from an S3 bucket, processes each video to generate embeddings,
 #          and saves the results in a local directory.
 # Author: Gary A. Stafford
-# Date: 2025-07-23
+# Date: 2025-11-01
 # License: MIT License
 
 import os
@@ -23,8 +23,8 @@ AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
 S3_VIDEO_STORAGE_BUCKET = os.getenv("S3_VIDEO_STORAGE_BUCKET")
 CLOUDFRONT_URL = os.getenv("CLOUDFRONT_URL")
 
-MODEL_ID = "us.amazon.nova-2-multimodal-embeddings-v1:0"
-S3_SOURCE_PREFIX = "nab"
+MODEL_ID = "amazon.nova-2-multimodal-embeddings-v1:0"
+S3_SOURCE_PREFIX = "commercials"
 S3_DESTINATION_PREFIX = "embeddings"
 LOCAL_DESTINATION_DIRECTORY = "embeddings"
 EMBEDDING_DIMENSION = 1_024
@@ -55,11 +55,13 @@ def main() -> None:
 
     # Wait for the job to complete and then read the output
     for video_file_name in video_file_names:
-        local_file_path = (
-            f"{LOCAL_DESTINATION_DIRECTORY}/{video_file_name.replace('.mp4', '.json')}"
+        local_file_path = os.path.abspath(
+            os.path.join(
+                LOCAL_DESTINATION_DIRECTORY, video_file_name.replace(".mp4", ".json")
+            )
         )
         if os.path.exists(local_file_path):
-            print(f"Skipping {video_file_name}, already processed.")
+            print(f"Skipping {local_file_path}, already processed.")
             continue
 
         video_key = f"{S3_SOURCE_PREFIX}/{video_file_name}"

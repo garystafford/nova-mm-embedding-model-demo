@@ -2,7 +2,7 @@
 #          It reads video analysis and embedding data from local JSON files, constructs OpenSearch documents,
 #          and saves them in a specified directory.
 # Author: Gary A. Stafford
-# Date: 2025-07-23
+# Date: 2025-11-01
 # License: MIT License
 
 import json

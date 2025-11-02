@@ -86,9 +86,16 @@ Videos and keyframes should be uploaded to the Amazon S3 buckets in `us-east-1`.
 Run the following Python scripts.
 
 ```bash
+# Extract keyframes from videos
 python ./extract_keyframe.py
+
+# Generate embeddings using Amazon Nova Multimodal Embeddings
 python ./generate_embeddings.py
+
+# Generate video analyses using TwelveLabs Pegasus 1.2
 python ./generate_analyses.py
+
+# Prepare combined OpenSearch documents
 python ./prepare_documents.py
 ```
 

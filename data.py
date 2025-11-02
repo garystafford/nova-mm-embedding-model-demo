@@ -13,9 +13,6 @@ class VideoEmbeddingSegmentNova(BaseModel):
     status: str
     segmentMetadata: SegmentMetadataNova
 
-    def __getitem__(self, item):
-        return getattr(self, item)
-
 
 class VideoEmbeddingsNova(BaseModel):
     videoName: str
@@ -27,11 +24,7 @@ class VideoEmbeddingsNova(BaseModel):
     contentType: str
     embeddings: List[VideoEmbeddingSegmentNova]
 
-    def __getitem__(self, item):
-        return getattr(self, item)
 
-
-# Data model for TwelveLabs Pegasus model for video analysis structure
 class VideoAnalysisPegasus(BaseModel):
     videoName: str
     s3URI: str
