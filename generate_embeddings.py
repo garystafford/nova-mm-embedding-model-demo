@@ -171,7 +171,7 @@ def download_embeddings_from_s3(
         client (boto3.client): The Boto3 S3 client.
         s3_key (str): The S3 key of the output file.
     Returns:
-        VideoEmbeddingsNova: The video embedding object.
+        VideoEmbeddings: The video embedding object.
     """
     s3_object = client.get_object(
         Bucket=S3_VIDEO_STORAGE_BUCKET,
@@ -187,7 +187,7 @@ def write_video_analysis_to_file(
 ) -> None:
     """Write the video analysis response to a local file.
     Args:
-        video_analysis (VideoEmbeddingsNova): The video analysis object containing the response.
+        video_analysis (VideoEmbeddings): The video analysis object containing the response.
         local_file_path (str): The local file path where the response will be written.
     """
     with open(local_file_path, "w") as f:

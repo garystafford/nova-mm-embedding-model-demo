@@ -178,7 +178,7 @@ def write_video_analysis_to_file(
 ) -> None:
     """Write the video analysis response to a local file.
     Args:
-        video_analysis (VideoAnalysisPegasus): The video analysis object containing the response.
+        video_analysis (VideoAnalysis): The video analysis object containing the response.
         local_file_path (str): The local file path where the response will be written.
     """
     with open(local_file_path, "w") as f:

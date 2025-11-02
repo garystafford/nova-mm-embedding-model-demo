@@ -50,7 +50,7 @@ def write_opensearch_document(
 ) -> None:
     """Write the OpenSearch document to a file in the local directory.
     :param analysis_file: Name of the analysis file (used for naming the output).
-    :param opensearch_document: OpenSearchDocumentNova object to write.
+    :param opensearch_document: OpenSearchDocument object to write.
     :return: None
     """
     os.makedirs(LOCAL_OPENSEARCH_DIRECTORY, exist_ok=True)
@@ -78,8 +78,8 @@ def prepare_opensearch_documents(
     embeddings: VideoEmbeddings, analysis: VideoAnalysis
 ) -> OpenSearchDocument:
     """Prepare OpenSearch document from video embeddings and analysis data.
-    :param embeddings: VideoEmbeddingsNova object containing vector embeddings.
-    :param analysis: VideoAnalysisPegasus object containing video analysis data.
+    :param embeddings: VideoEmbeddings object containing vector embeddings.
+    :param analysis: VideoAnalysis object containing video analysis data.
     :return: OpenSearchDocument object ready for indexing.
     """
 
