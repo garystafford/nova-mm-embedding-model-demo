@@ -9,7 +9,7 @@ import json
 import os
 import time
 
-from data import OpenSearchDocumentNova, VideoAnalysisPegasus, VideoEmbeddingsNova
+from data import OpenSearchDocument, VideoAnalysis, VideoEmbeddings
 
 LOCAL_EMBEDDINGS_DIRECTORY = "embeddings"
 LOCAL_ANALYSIS_DIRECTORY = "analyses"
@@ -30,11 +30,11 @@ def main():
 
         # Read the JSON files
         try:
-            embeddings = VideoEmbeddingsNova(**read_json_file(embeddings_file_path))
-            analysis = VideoAnalysisPegasus(**read_json_file(analysis_file_path))
+            embeddings = VideoEmbeddings(**read_json_file(embeddings_file_path))
+            analysis = VideoAnalysis(**read_json_file(analysis_file_path))
 
             # Prepare OpenSearch document
-            opensearch_document: OpenSearchDocumentNova = prepare_opensearch_documents(
+            opensearch_document: OpenSearchDocument = prepare_opensearch_documents(
                 embeddings, analysis
             )
 
@@ -46,7 +46,7 @@ def main():
 
 
 def write_opensearch_document(
-    analysis_file: str, opensearch_document: OpenSearchDocumentNova
+    analysis_file: str, opensearch_document: OpenSearchDocument
 ) -> None:
     """Write the OpenSearch document to a file in the local directory.
     :param analysis_file: Name of the analysis file (used for naming the output).
@@ -75,15 +75,15 @@ def read_json_file(file_path: str) -> dict:
 
 
 def prepare_opensearch_documents(
-    embeddings: VideoEmbeddingsNova, analysis: VideoAnalysisPegasus
-) -> OpenSearchDocumentNova:
+    embeddings: VideoEmbeddings, analysis: VideoAnalysis
+) -> OpenSearchDocument:
     """Prepare OpenSearch document from video embeddings and analysis data.
     :param embeddings: VideoEmbeddingsNova object containing vector embeddings.
     :param analysis: VideoAnalysisPegasus object containing video analysis data.
     :return: OpenSearchDocument object ready for indexing.
     """
 
-    document = OpenSearchDocumentNova(
+    document = OpenSearchDocument(
         videoName=analysis.videoName,
         s3URI=analysis.s3URI,
         keyframeURL=embeddings.keyframeURL,

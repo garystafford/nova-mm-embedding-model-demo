@@ -15,7 +15,7 @@ import boto3
 from botocore.config import Config
 
 from utilities import Utilities
-from data import VideoAnalysisPegasus
+from data import VideoAnalysis
 
 load_dotenv()  # Loads variables from .env file
 
@@ -82,7 +82,7 @@ def main() -> None:
             bedrock_runtime_client, account_id, video_path, prompt_keywords
         )
 
-        video_analysis = VideoAnalysisPegasus(
+        video_analysis = VideoAnalysis(
             videoName=video_file_name,
             s3URI=video_path,
             title=response_title["message"],
@@ -174,7 +174,7 @@ def generate_video_analysis(
 
 # method that writes the video analysis response to a local file
 def write_video_analysis_to_file(
-    video_analysis: VideoAnalysisPegasus, local_file_path: str
+    video_analysis: VideoAnalysis, local_file_path: str
 ) -> None:
     """Write the video analysis response to a local file.
     Args:

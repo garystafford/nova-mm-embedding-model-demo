@@ -14,7 +14,7 @@ from botocore.config import Config
 from dotenv import load_dotenv
 
 from utilities import Utilities
-from data import VideoEmbeddingsNova
+from data import VideoEmbeddings
 
 load_dotenv()  # Loads variables from .env file
 
@@ -100,7 +100,7 @@ def main() -> None:
 
         print(f"\nFound {len(embeddings)} video segments:")
 
-        video_embeddings = VideoEmbeddingsNova(
+        video_embeddings = VideoEmbeddings(
             videoName=video_file_name,
             s3URI=video_s3_uri,
             keyframeURL=f"{CLOUDFRONT_URL}/{video_file_name.replace('.mp4', '.jpg')}",
@@ -165,7 +165,7 @@ def generate_embeddings(client: boto3.client, account_id: str, video_path: str) 
 
 def download_embeddings_from_s3(
     client: boto3.client, s3_key: str
-) -> VideoEmbeddingsNova:
+) -> VideoEmbeddings:
     """Download the output file from S3 and save it locally.
     Args:
         client (boto3.client): The Boto3 S3 client.
@@ -183,7 +183,7 @@ def download_embeddings_from_s3(
 
 
 def write_video_analysis_to_file(
-    video_embeddings: VideoEmbeddingsNova, local_file_path: str
+    video_embeddings: VideoEmbeddings, local_file_path: str
 ) -> None:
     """Write the video analysis response to a local file.
     Args:

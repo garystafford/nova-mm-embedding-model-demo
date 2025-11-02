@@ -2,19 +2,19 @@ from pydantic import BaseModel
 from typing import List
 
 
-class SegmentMetadataNova(BaseModel):
+class SegmentMetadata(BaseModel):
     segmentIndex: int
     segmentStartSeconds: float
     segmentEndSeconds: float
 
 
-class VideoEmbeddingSegmentNova(BaseModel):
+class VideoEmbeddingSegment(BaseModel):
     embedding: List[float]
     status: str
-    segmentMetadata: SegmentMetadataNova
+    segmentMetadata: SegmentMetadata
 
 
-class VideoEmbeddingsNova(BaseModel):
+class VideoEmbeddings(BaseModel):
     videoName: str
     s3URI: str
     keyframeURL: str
@@ -22,10 +22,10 @@ class VideoEmbeddingsNova(BaseModel):
     sizeBytes: int
     durationSec: float = 0.0
     contentType: str
-    embeddings: List[VideoEmbeddingSegmentNova]
+    embeddings: List[VideoEmbeddingSegment]
 
 
-class VideoAnalysisPegasus(BaseModel):
+class VideoAnalysis(BaseModel):
     videoName: str
     s3URI: str
     title: str
@@ -34,7 +34,7 @@ class VideoAnalysisPegasus(BaseModel):
     dateCreated: str
 
 
-class OpenSearchDocumentNova(BaseModel):
+class OpenSearchDocument(BaseModel):
     videoName: str
     s3URI: str
     keyframeURL: str
@@ -45,4 +45,4 @@ class OpenSearchDocumentNova(BaseModel):
     contentType: str
     sizeBytes: int
     durationSec: float = 0.0
-    embeddings: List[VideoEmbeddingSegmentNova]
+    embeddings: List[VideoEmbeddingSegment]
