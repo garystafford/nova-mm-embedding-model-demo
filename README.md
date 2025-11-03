@@ -132,14 +132,56 @@ docker service ls
 You can interact with your OpenSearch index in the Dev Tools tab of the OpenSearch Dashboards UI.
 
 ```text
-GET tv-commercials-index/_settings
+GET tv-commercials-index-nova-mm/_settings
 
-GET tv-commercials-index/_count
+GET tv-commercials-index-nova-mm/_count
 
-GET tv-commercials-index/_search
+GET tv-commercials-index-nova-mm/_search
 {
   "query": {
     "match_all": {}
+  }
+}
+
+GET tv-commercials-index-nova-mm/_search
+{
+  "query": {
+    "terms": {
+      "keywords": [
+        "car",
+        "city"
+      ]
+    }
+  },
+    "_source": false,
+    "fields": ["title", "durationSec"]
+}
+
+GET tv-commercials-index-nova-mm/_search
+{
+  "query": {
+    "nested": {
+      "path": "embeddings",
+      "query": {
+        "knn": {
+          "embeddings.embedding": {
+            "vector": [
+              0.059814453125,
+              -0.017333984375,
+              0.01153564453125,
+              ...
+            ],
+            "k": 6
+          }
+        }
+      }
+    }
+  },
+  "size": 6,
+  "_source": {
+    "excludes": [
+      "embeddings.embedding"
+    ]
   }
 }
 ```
